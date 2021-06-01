@@ -1,6 +1,7 @@
 <template>
+  <h1>Weather-app</h1>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome to Elroy weather-app"/>
 </template>
 
 <script>
