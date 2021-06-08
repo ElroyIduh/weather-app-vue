@@ -2,18 +2,12 @@
   <h1>Weather-app</h1>
   <h2>The best weather app in germany</h2>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Elroy weather-app"/>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
 </script>
 
 <style>
