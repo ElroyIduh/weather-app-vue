@@ -1,23 +1,25 @@
 <template>
   <h1>Weather-app</h1>
   <h2>The best weather app in germany</h2>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <div v-if="current">
-    <h1>Current</h1>
-    <p>{{ current.dt }}</p>
-    <p>{{ current.weather[0].description }}</p>
-  </div>
-  <div v-if="daily">
-    <div v-for="day in daily" :key="day.dt">
-      <h2>{{ day.dt }}</h2>
-      <h2>{{ day.temp.day }}</h2>
-      <h2>{{ day.temp.min }}</h2>
-      <h2>{{ day.temp.max }}</h2>
+  <div v-if="weatherData">
+    <img
+      :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"
+      :alt="current.weather[0].description"
+    />
+    <div v-if="current">
+      <Current :current="current" quote="quote of the day" />
     </div>
+    <div v-if="daily">
+      <Day v-for="day in daily" :key="day.dt" :day="day" />
+    </div>
+    
   </div>
 </template>
 
 <script>
+import Day from "./components/Day";
+import Current from "./components/Current";
+
 export default {
   data() {
     return {
@@ -26,6 +28,10 @@ export default {
       current: null,
       weatherData: null,
     };
+  },
+  components: {
+    Day,
+    Current,
   },
   created() {
     const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
