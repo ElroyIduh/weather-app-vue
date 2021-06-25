@@ -13,8 +13,8 @@
       <Day v-for="day in daily" :key="day.dt" :day="day" />
     </div>
 
-  <div v-if="dailyquote">
-      <!-- <DailyQuote text=" Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" /> -->
+  <div >
+      <DailyQuote text=" Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" />
   </div>
     
   </div>
@@ -23,7 +23,7 @@
 <script>
 import Day from "./components/Day";
 import Current from "./components/Current";
-import DailyQuote from ".components/DailyQuote";
+import DailyQuote from "./components/DailyQuote";
 
 export default {
   data() {
