@@ -7,14 +7,17 @@
       :alt="current.weather[0].description"
     />
     <div v-if="current">
-      <Current :current="current" quote="quote of the day" />
+      <Current :current="current"  />
     </div>
     <div v-if="daily">
-      <Day v-for="day in daily" :key="day.dt" :day="day" />
+      <Day v-for="day in daily" :key="day.dt" :day="day"  />
+    </div>
+    <div class="hourly">
+      <Hour v-for="hour in hourly" :key="hour.dt" :hour="hour"/> 
     </div>
 
-  <div >
-      <DailyQuote text=" Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" />
+  <div>
+      <DailyQuote text= "  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" />
   </div>
     
   </div>
@@ -22,6 +25,7 @@
 
 <script>
 import Day from "./components/Day";
+import Hour from "./components/Hour";
 import Current from "./components/Current";
 import DailyQuote from "./components/DailyQuote";
 
@@ -36,26 +40,34 @@ export default {
   },
   components: {
     Day,
+    Hour,
     Current,
     DailyQuote,
   },
   created() {
-    const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
-    const lat = 48.2629984;
-    const lon = 11.4339022;
-    const lang = "de";
+    this.getWeatherData()
+  },
+  methods: {
+    getWeatherData() {
+      const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
+      const lat = 48.2629984;
+      const lon = 11.4339022;
+      const lang = "de";
 
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?appid=${apiKey}&lat=${lat}&lon=${lon}&lang=${lang}&units=metric`;
+      let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?appid=${apiKey}&lat=${lat}&lon=${lon}&lang=${lang}&units=metric`;
 
-    fetch(apiUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("data:", data);
-        this.weatherData = data;
-        this.hourly = data.hourly;
-        this.daily = data.daily;
-        this.current = data.current;
-      });
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data:", data);
+          this.weatherData = data;
+          this.hourly = data.hourly;
+          this.hourly.splice(24, this.hourly.length -1)
+          console.log(this.hourly)
+          this.daily = data.daily;
+          this.current = data.current;
+        });
+    },
   },
 };
 </script>
@@ -69,4 +81,14 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.hourly {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 30%;
+
+}
+
+
+
 </style>

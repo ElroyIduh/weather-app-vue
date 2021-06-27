@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ day.dt }}</h2>
+    <h2>{{ getDate(hour.dt) }}</h2>
     <h2>{{ day.temp.day }}</h2>
     <h2>{{ day.temp.min }}</h2>
     <h2>{{ day.temp.max }}</h2>
@@ -12,7 +12,20 @@
 
 <script>
 export default {
-  props: ["day"]
+  props: ["day"],
+ methods:{
+    getDate(dt) {
+            const date = new Date(dt * 1000);
+            
+            const month = "0" + (date.getMonth() + 1);
+            const day = "0" + date.getDate();
+            const year = date.getFullYear();
+
+            const formattedDate = + day.substr(-2) + ':' + month.substr(-2) + ':' + year;
+
+            return formattedDate;
+        },
+ }
 }
 </script>
 
