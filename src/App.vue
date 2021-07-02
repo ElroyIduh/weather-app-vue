@@ -9,12 +9,13 @@
     <div v-if="current">
       <Current :current="current"  />
     </div>
-    <div v-if="daily">
-      <Day v-for="day in daily" :key="day.dt" :day="day"  />
-    </div>
     <div class="hourly">
       <Hour v-for="hour in hourly" :key="hour.dt" :hour="hour"/> 
     </div>
+    <div v-if="daily">
+      <Day v-for="day in daily" :key="day.dt" :day="day"  />
+    </div>
+    
 
   <div>
       <DailyQuote text= "  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" />
@@ -84,8 +85,10 @@ export default {
 
 .hourly {
   display: flex;
-  flex-wrap: wrap;
-  flex: 30%;
+  flex-direction: row;
+  width: 100%;
+  overflow: scroll;
+  overflow-y: hidden;
 
 }
 

@@ -45,6 +45,15 @@ export default {
 .hour {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 30%;
+    min-width: 165px;
 }
+
+/* .hour {
+  width: 30%;
+  min-width: 165px;
+  overflow-y: auto;
+  overflow-x: hidden;
+} */
+
 </style>
