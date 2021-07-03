@@ -12,14 +12,16 @@
     <div class="hourly">
       <Hour v-for="hour in hourly" :key="hour.dt" :hour="hour"/> 
     </div>
-    <div v-if="daily">
-      <Day v-for="day in daily" :key="day.dt" :day="day"  />
+    <div class="days" v-if="daily">
+      <Day class="day" v-for="day in daily.slice(0, 4)" :key="day.dt" :day="day"  />
+      <div class="quote">
+      <DailyQuote text= "  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" />
+      <Day class="day" v-for="day in daily.slice(-4)" :key="day.dt" :day="day"  />
+  </div>
     </div>
     
 
-  <div>
-      <DailyQuote text= "  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" />
-  </div>
+
     
   </div>
 </template>
@@ -92,6 +94,17 @@ export default {
 
 }
 
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 4rem;
+}
 
+.day, .quote {
+  flex: 0 32%;
+  
+  margin-bottom: 2%;
+}
 
 </style>

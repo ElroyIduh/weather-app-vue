@@ -1,11 +1,11 @@
 <template>
-  <div v-if="hour" class="hour" >
-    <div>{{ getDate(hour.dt) }}</div>
+  <div v-if="hour" class="hour">
     <div>{{ getTime(hour.dt) }}</div>
     <div>
-        {{ hour.weather[0].description}}
+      {{ hour.weather[0].description }}
     </div>
-    
+    <div>{{ formatTermperature(hour.temp) }}</div>
+
     <img
       :src="`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`"
       :alt="hour.weather[0].description"
@@ -15,38 +15,31 @@
 
 <script>
 export default {
-    props: ["hour"],
-    methods: {
-        getTime(dt) {
-            const date = new Date(dt * 1000);
-            const hours = date.getHours();
-            const minutes = "0" + date.getMinutes();
+  props: ["hour"],
+  methods: {
+    getTime(dt) {
+      const date = new Date(dt * 1000);
+      const hours = date.getHours();
+      const minutes = "0" + date.getMinutes();
 
-            const formattedTime = hours + ':' + minutes.substr(-2);
+      const formattedTime = hours + ":" + minutes.substr(-2);
 
-            return formattedTime;
-        },
-        getDate(dt) {
-            const date = new Date(dt * 1000);
-            
-            const month = "0" + (date.getMonth() + 1);
-            const day = "0" + date.getDate();
-            const year = date.getFullYear();
-
-            const formattedDate = + day.substr(-2) + ':' + month.substr(-2) + ':' + year;
-
-            return formattedDate;
-        },
-    }
-}
+      return formattedTime;
+    },
+    formatTermperature(temp) {
+      const roundedTemp = Math.round(temp);
+      return `${roundedTemp} °C`;
+    },
+  },
+};
 </script>
 
 <style>
 .hour {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    min-width: 165px;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 165px;
 }
 
 /* .hour {
@@ -55,5 +48,4 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
 } */
-
 </style>
