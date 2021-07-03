@@ -42,10 +42,4 @@ export default {
   min-width: 165px;
 }
 
-/* .hour {
-  width: 30%;
-  min-width: 165px;
-  overflow-y: auto;
-  overflow-x: hidden;
-} */
 </style>

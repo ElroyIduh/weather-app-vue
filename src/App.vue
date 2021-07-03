@@ -1,28 +1,37 @@
 <template>
   <h1>Weather-app</h1>
-  <h2>The best weather app in germany</h2>
+  <h2>The best weather app in Germany</h2>
   <div v-if="weatherData">
     <img
       :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"
       :alt="current.weather[0].description"
     />
     <div v-if="current">
-      <Current :current="current"  />
+      <Current :current="current" />
     </div>
     <div class="hourly">
-      <Hour v-for="hour in hourly" :key="hour.dt" :hour="hour"/> 
+      <Hour v-for="hour in hourly" :key="hour.dt" :hour="hour" />
     </div>
     <div class="days" v-if="daily">
-      <Day class="day" v-for="day in daily.slice(0, 4)" :key="day.dt" :day="day"  />
+      <Day
+        class="day"
+        v-for="day in daily.slice(0, 4)"
+        :key="day.dt"
+        :day="day"
+      />
       <div class="quote">
-      <DailyQuote text= "  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. " author="Bruce Lee" />
-      <Day class="day" v-for="day in daily.slice(-4)" :key="day.dt" :day="day"  />
-  </div>
+        <DailyQuote
+          text="  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. "
+          author="Bruce Lee"
+        />
+      </div>
+      <Day
+        class="day"
+        v-for="day in daily.slice(-4)"
+        :key="day.dt"
+        :day="day"
+      />
     </div>
-    
-
-
-    
   </div>
 </template>
 
@@ -48,7 +57,7 @@ export default {
     DailyQuote,
   },
   created() {
-    this.getWeatherData()
+    this.getWeatherData();
   },
   methods: {
     getWeatherData() {
@@ -65,8 +74,8 @@ export default {
           console.log("data:", data);
           this.weatherData = data;
           this.hourly = data.hourly;
-          this.hourly.splice(24, this.hourly.length -1)
-          console.log(this.hourly)
+          this.hourly.splice(24, this.hourly.length - 1);
+          console.log(this.hourly);
           this.daily = data.daily;
           this.current = data.current;
         });
@@ -91,7 +100,6 @@ export default {
   width: 100%;
   overflow: scroll;
   overflow-y: hidden;
-
 }
 
 .days {
@@ -101,10 +109,9 @@ export default {
   margin: 4rem;
 }
 
-.day, .quote {
+.day,
+.quote {
   flex: 0 32%;
-  
   margin-bottom: 2%;
 }
-
 </style>

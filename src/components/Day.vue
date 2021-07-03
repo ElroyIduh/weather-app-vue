@@ -3,7 +3,7 @@
 
   <div class="card">
   <img :src="`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`" :alt="day.weather[0].description">
-  <div class="container">
+  <div >
     <h2>{{ getDay(day.dt) }} - {{ getDate(day.dt) }}</h2>
     <h2>Ø {{ formatTermperature(day.temp.day)  }}</h2>
     <h2>min {{ formatTermperature(day.temp.min) }}</h2>
@@ -57,8 +57,8 @@ export default {
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-.container {
+/* .container {
   padding: 2px 16px;
   
-}
+} */
 </style>
