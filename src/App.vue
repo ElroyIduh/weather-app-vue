@@ -1,8 +1,14 @@
 <template>
-  <h1>Weather-app</h1>
-  <h2>The best weather app in Germany</h2>
-  <div v-if="weatherData">
-    <img
+  <h1>Wetter-App</h1>
+  <h2>Die beste Wetter App Deutschlands</h2>
+
+    <div class="search-box">
+               <input class="search-txt" type="text" name="" placeholder="Stadt oder Postleitzahl eingeben :)">
+               <a class="search-btn" href="#"></a>
+           </div>
+           
+  <div  v-if="weatherData">
+    <img 
       :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"
       :alt="current.weather[0].description"
     />
@@ -113,6 +119,16 @@ export default {
 .day,
 .quote {
   flex: 0 32%;
-  margin-bottom: 2%;
+  margin-bottom: 2%;  
+}
+
+.currentIcon{
+  width: 12%;
+}
+
+.search-box{
+    color:#F7F6F1;
+    float: left;
+    width: 20%;
 }
 </style>

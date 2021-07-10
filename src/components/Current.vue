@@ -1,6 +1,6 @@
 <template>
    <div class="current">
-      <h1>Current</h1>
+      <h1>Aktuelles Wetter</h1>
       <p>{{ getDate(current.dt) }}</p>
       <p>{{ current.weather[0].description }}</p>
       <!-- <p>{{ current.weather[0].icon }}</p> -->
@@ -21,7 +21,7 @@ export default {
             const day = "0" + date.getDate();
             const year = date.getFullYear();
 
-            const formattedDate = + day.substr(-2) + '.' + month.substr(-2) + '.' + year;
+            const formattedDate = day.substr(-2) + '.' + month.substr(-2) + '.' + year;
 
             return formattedDate;
         },

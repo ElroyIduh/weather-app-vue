@@ -40,6 +40,8 @@ export default {
   flex-direction: column;
   width: 30%;
   min-width: 165px;
+  outline-style: inherit;
+  outline-color: ivory;
 }
 
 </style>
