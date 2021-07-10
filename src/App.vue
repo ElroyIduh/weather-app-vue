@@ -19,12 +19,13 @@
         :key="day.dt"
         :day="day"
       />
-      <div class="quote">
+      
         <DailyQuote
+        class="quote"
           text="  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. "
           author="Bruce Lee"
         />
-      </div>
+      
       <Day
         class="day"
         v-for="day in daily.slice(-4)"
