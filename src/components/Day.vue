@@ -8,6 +8,8 @@
     <h2>Ø {{ formatTermperature(day.temp.day)  }}</h2>
     <h2>min {{ formatTermperature(day.temp.min) }}</h2>
     <h2>max {{ formatTermperature(day.temp.max) }}</h2>
+    <!-- <h2>max {{ formatRain(day.rain) }}</h2>
+    <h2>max {{ formatWindspeed(day.weather.wind_speed) }}</h2> -->
    
   </div>
 </div>
@@ -42,7 +44,18 @@ export default {
         formatTermperature(temp) {
           const roundedTemp = Math.round(temp)
           return`${roundedTemp} °C`
-        }
+        },
+        // formatRain(rain) {
+        //   const rainProbability = rain
+        //   return`Niederschlag: ${rainProbability} %`
+        // },
+        // formatWindspeed(wind_speed) {
+          
+        //   const windSpeed = Math.round((wind_speed * 3.6) * 10) /10
+        //   return` ${windSpeed} km/h`
+
+        // },
+
  }
 }
 </script>

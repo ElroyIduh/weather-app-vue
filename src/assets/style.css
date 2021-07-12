@@ -1,3 +1,6 @@
 body {
-    background-color: rgb(119, 209, 236);  
+    /* background-color: rgb(119, 209, 236);   */
+    /* background-image: url('assets/img/clear.gif'); */
+    background: rgb(63,251,216);
+background: radial-gradient(circle, rgba(63,251,216,1) 48%, rgba(6,45,57,1) 100%);
 }

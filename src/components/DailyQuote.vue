@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <div class="quote">
+  <div class="card quote">
+    <div>
       <h2>{{ text }}</h2>
       <h3>{{ author }}</h3>
   </div> 
@@ -36,7 +36,20 @@ export default {
   .quote {
     color:hsl(0, 0%, 40%);
     font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+/*
+  element
+  .class
+  #id
+  ::pseudo-class
+*/
+
+.quote div {
+  padding: 2rem;
+}
 
   .quote .text {
     font-size: 1,5rem;
