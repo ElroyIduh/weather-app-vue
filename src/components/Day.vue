@@ -5,7 +5,7 @@
   <img :src="`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`" :alt="day.weather[0].description">
   <div >
     <h2>{{ getDay(day.dt) }} - {{ getDate(day.dt) }}</h2>
-    <h2>Ø {{ formatTermperature(day.temp.day)  }}</h2>
+    <!-- <h2>Ø {{ formatTermperature(day.temp.day)  }}</h2> -->
     <h2>min {{ formatTermperature(day.temp.min) }}</h2>
     <h2>max {{ formatTermperature(day.temp.max) }}</h2>
     <!-- <h2>max {{ formatRain(day.rain) }}</h2>
