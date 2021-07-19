@@ -38,10 +38,12 @@ export default {
 .hour {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 30%;
   min-width: 165px;
   outline-style: inherit;
   outline-color: ivory;
+  align-items: center;
 }
 
 </style>

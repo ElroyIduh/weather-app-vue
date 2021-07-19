@@ -19,7 +19,7 @@
       :alt="current.weather[0].description"
     />
     <div v-if="current">
-      <Current :current="current" />
+      <Current :current="current" :city="city" />
     </div>
     <div class="hourly">
       <Hour v-for="hour in hourly" :key="hour.dt" :hour="hour" />
@@ -56,6 +56,7 @@ export default {
       current: null,
       weatherData: null,
       cityInput: "",
+      city: "",
     };
   },
   components: {
@@ -74,18 +75,18 @@ export default {
         lon = position.coords.longitude;
 
         this.getWeatherData(lat, lon);
+        this.getCurrentCity(lat, lon);
       },
       (error) => {
         console.error(error);
         this.getWeatherData(lat, lon);
+        this.getCurrentCity(lat, lon);
       }
     );
   },
   methods: {
-    getWeatherData() {
+    getWeatherData(lat, lon) {
       const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
-      let lat = 48.2629984;
-      let lon = 11.4339022;
       const lang = "de";
 
       let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?appid=${apiKey}&lat=${lat}&lon=${lon}&lang=${lang}&units=metric`;
@@ -93,7 +94,7 @@ export default {
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-          console.log("data:", data);
+          console.log("weatherData:", data);
           this.weatherData = data;
           this.hourly = data.hourly;
           this.hourly.splice(24, this.hourly.length - 1);
@@ -103,17 +104,53 @@ export default {
         });
     },
 
-    getCurrentCity() {
+    getCurrentCity(lat, lon) {
       const apiKey = process.env.VUE_APP_GEO_API_KEY;
-      let lat = 48.2629984;
-      let lon = 11.4339022;
-      
 
       let apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("OpenCageData", data);
+
+          const locationComponents = data.results[0].components;
+
+          if (locationComponents.city) {
+            this.city = locationComponents.city;
+          } else if (locationComponents.town) {
+            this.city = locationComponents.town;
+          } else {
+            this.city = locationComponents.village;
+          }
+        });
     },
 
     searchCity() {
-      alert(this.cityInput);
+      const apiKey = process.env.VUE_APP_GEO_API_KEY;
+
+      let apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${this.cityInput}&key=${apiKey}`;
+
+      // alert(apiUrl)
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          const lat = data.result[0].geometry.lat;
+          const lon = data.result[0].geometry.lng;
+
+          this.getWeatherData(lat, lon);
+          
+          const locationComponents = data.results[0].components;
+          if (locationComponents.city) {
+            this.city = locationComponents.city;
+          } else if (locationComponents.town) {
+            this.city = locationComponents.town;
+          } else {
+            this.city = locationComponents.village;
+          }});
+
     },
   },
 };

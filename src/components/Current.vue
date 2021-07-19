@@ -1,6 +1,6 @@
 <template>
    <div class="current">
-      <h1>Aktuelles Wetter</h1>
+      <h1>Aktuelles Wetter in {{ city }}</h1>
       <p>{{ getDate(current.dt) }}</p>
       <p>{{ current.weather[0].description }}</p>
       <!-- <p>{{ current.weather[0].icon }}</p> -->
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  props:["quote", "current"],
+  props:["quote", "current", "city"],
    methods:{
     getDate(dt) {
             const date = new Date(dt * 1000);
