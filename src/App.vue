@@ -137,8 +137,8 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          const lat = data.result[0].geometry.lat;
-          const lon = data.result[0].geometry.lng;
+          const lat = data.results[0].geometry.lat;
+          const lon = data.results[0].geometry.lng;
 
           this.getWeatherData(lat, lon);
           
@@ -149,7 +149,8 @@ export default {
             this.city = locationComponents.town;
           } else {
             this.city = locationComponents.village;
-          }});
+          }
+          });
 
     },
   },
