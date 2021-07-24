@@ -1,6 +1,29 @@
 body {
-    /* background-color: rgb(119, 209, 236);   */
-    /* background-image: url('assets/img/clear.gif'); */
-    background: rgb(63,251,216);
-background: radial-gradient(circle, rgba(63,251,216,1) 48%, rgba(6,45,57,1) 100%);
+    background: linear-gradient(51deg, #45d9ff, #31ffbb, #78f6ff);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 15s ease infinite;
+    -moz-animation: AnimationName 15s ease infinite;
+    animation: AnimationName 15s ease infinite;
 }
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 71%}
+    50%{background-position:100% 30%}
+    100%{background-position:0% 71%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 71%}
+    50%{background-position:100% 30%}
+    100%{background-position:0% 71%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 71%}
+    50%{background-position:100% 30%}
+    100%{background-position:0% 71%}
+}
+
+
+    
+
+

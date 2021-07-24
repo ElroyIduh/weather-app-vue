@@ -185,6 +185,7 @@ export default {
 .card {
   flex: 0 32%;
   margin-bottom: 2%;
+  
 }
 
 .currentIcon {

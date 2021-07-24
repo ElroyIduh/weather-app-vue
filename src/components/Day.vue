@@ -5,11 +5,11 @@
   <img :src="`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`" :alt="day.weather[0].description">
   <div >
     <h2>{{ getDay(day.dt) }} - {{ getDate(day.dt) }}</h2>
-    <!-- <h2>Ø {{ formatTermperature(day.temp.day)  }}</h2> -->
-    <h2>min {{ formatTermperature(day.temp.min) }}</h2>
-    <h2>max {{ formatTermperature(day.temp.max) }}</h2>
-    <!-- <h2>max {{ formatRain(day.rain) }}</h2>
-    <h2>max {{ formatWindspeed(day.weather.wind_speed) }}</h2> -->
+    <h2> <i class="fas fa-temperature-low"></i> {{ formatTermperature(day.temp.min) }}</h2>
+    <h2> <i class="fas fa-temperature-high"></i> {{ formatTermperature(day.temp.max) }}</h2>
+    <h2><i class="fas fa-wind"></i> {{ formatWindspeed(day.wind_speed) }}</h2>
+    <h2><i class="fas fa-humidity"></i> {{ formatHumidity(day.humidity) }} %</h2>
+    <h2 v-if="day.rain"><i class="fas fa-cloud-rain"></i> {{ formatRain(day.rain) }}</h2>
    
   </div>
 </div>
@@ -45,16 +45,19 @@ export default {
           const roundedTemp = Math.round(temp)
           return`${roundedTemp} °C`
         },
-        // formatRain(rain) {
-        //   const rainProbability = rain
-        //   return`Niederschlag: ${rainProbability} %`
-        // },
-        // formatWindspeed(wind_speed) {
+        formatRain(rain) {
+          const rainProbability = rain
+          return` ${rainProbability} %`
+        },
+        formatWindspeed(wind_speed) {
           
-        //   const windSpeed = Math.round((wind_speed * 3.6) * 10) /10
-        //   return` ${windSpeed} km/h`
-
-        // },
+          const windSpeed = Math.round((wind_speed * 3.6) * 10) /10
+          return `${windSpeed} km/h`
+        },
+        formatHumidity(humidity) {
+          const humidityLevel = humidity
+          return ` ${humidityLevel}`
+        },
 
  }
 }
@@ -66,6 +69,7 @@ export default {
   transition: 0.3s;
   width: 40%;
   border-radius: 5px;
+  
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);

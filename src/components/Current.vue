@@ -4,7 +4,7 @@
       <p>{{ getDate(current.dt) }}</p>
       <p>{{ current.weather[0].description }}</p>
       <!-- <p>{{ current.weather[0].icon }}</p> -->
-      <p>{{ current.temp }}</p>
+      <p>{{ formatCurrentTermperature(current.temp) }}</p>
       <p>{{ current.weather.wind_speed }}</p>
       <!-- <p>{{ quote }}</p> -->
     </div>
@@ -24,6 +24,10 @@ export default {
             const formattedDate = day.substr(-2) + '.' + month.substr(-2) + '.' + year;
 
             return formattedDate;
+        },
+        formatCurrentTermperature(temp) {
+          const roundedTemp = Math.round(temp)
+          return`${roundedTemp} °C`
         },
    }
 }
