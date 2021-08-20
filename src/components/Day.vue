@@ -1,15 +1,16 @@
 <template>
 
-
+<!-- Cards und Card Input -->
   <div class="card">
   <img :src="`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`" :alt="day.weather[0].description">
   <div >
-    <h2>{{ getDay(day.dt) }} - {{ getDate(day.dt) }}</h2>
-    <h2> <i class="fas fa-temperature-low"></i> {{ formatTermperature(day.temp.min) }}</h2>
-    <h2> <i class="fas fa-temperature-high"></i> {{ formatTermperature(day.temp.max) }}</h2>
-    <h2><i class="fas fa-wind"></i> {{ formatWindspeed(day.wind_speed) }}</h2>
-    <h2><i class="fas fa-humidity"></i> {{ formatHumidity(day.humidity) }} %</h2>
-    <h2 v-if="day.rain"><i class="fas fa-cloud-rain"></i> {{ formatRain(day.rain) }}</h2>
+    <p>{{ getDay(day.dt) }} - {{ getDate(day.dt) }}</p>
+    <p><i class="fas fa-temperature-low"></i> {{ formatTermperature(day.temp.min) }}</p>
+    <p><i class="fas fa-temperature-high"></i> {{ formatTermperature(day.temp.max) }}</p>
+    <p><i class="fas fa-wind"></i> {{ formatWindspeed(day.wind_speed) }}</p>
+    <p><i class="fas fa-humidity"></i> {{ formatHumidity(day.humidity) }} %</p>
+
+    <p v-if="day.rain"><i class="fas fa-cloud-rain"></i> {{ formatRain(day.rain) }}</p>
    
   </div>
 </div>
