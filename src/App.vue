@@ -1,5 +1,5 @@
 <template>
-  <h1>Wetter-App</h1>
+  <h1>Elroy's Wetter-App</h1>
   <h2>Die beste Wetter App Deutschlands</h2>
 
   <div class="search-box">
@@ -14,10 +14,7 @@
   </div>
 
   <div v-if="weatherData">
-    <img
-      :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"
-      :alt="current.weather[0].description"
-    />
+    
     <div v-if="current">
       <Current :current="current" :city="city" />
     </div>
@@ -180,6 +177,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 4rem;
+  padding: 3rem;
 }
 
 .card {
@@ -222,5 +220,9 @@ export default {
   border-bottom: 2px solid #2c3e50;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.hourly {
+  padding: 3rem;
 }
 </style>

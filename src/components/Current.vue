@@ -1,12 +1,15 @@
 <template>
    <div class="current">
-      <h1>Aktuelles Wetter in {{ city }}</h1>
+     
+    <img
+      :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"
+      :alt="current.weather[0].description"/>
+      <h2>Aktuelles Wetter in {{ city }}</h2>
       <p>{{ getDate(current.dt) }}</p>
       <p>{{ current.weather[0].description }}</p>
-      <!-- <p>{{ current.weather[0].icon }}</p> -->
       <p>{{ formatCurrentTermperature(current.temp) }}</p>
       <p>{{ current.weather.wind_speed }}</p>
-      <!-- <p>{{ quote }}</p> -->
+      
     </div>
 </template>
 
@@ -34,5 +37,7 @@ export default {
 </script>
 
 <style>
-
+ .current {
+   padding: 3rem;
+ }
 </style>

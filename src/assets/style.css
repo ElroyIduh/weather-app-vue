@@ -5,6 +5,7 @@ body {
     -webkit-animation: AnimationName 15s ease infinite;
     -moz-animation: AnimationName 15s ease infinite;
     animation: AnimationName 15s ease infinite;
+    font-size: 20px;
 }
 
 @-webkit-keyframes AnimationName {
