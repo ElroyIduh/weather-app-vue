@@ -2,6 +2,8 @@
   <h1>Elroy's Wetter-App</h1>
   <h2>Die beste Wetter App Deutschlands</h2>
 
+  
+<!-- Search teil -->
   <div class="search-box">
     <input
       class="search-text"
@@ -13,8 +15,12 @@
     <button class="search-button" @click="searchCity">Search</button>
   </div>
 
+<!-- Loader -->
+  <div class="loader-container">
+  <div v-if="loading" class="lds-ripple"><div></div><div></div></div>
+  </div>
+
   <div v-if="weatherData">
-    
     <div v-if="current">
       <Current :current="current" :city="city" />
     </div>
@@ -54,6 +60,7 @@ export default {
       weatherData: null,
       cityInput: "",
       city: "",
+      loading: false,
     };
   },
   components: {
@@ -63,6 +70,7 @@ export default {
     DailyQuote,
   },
   created() {
+    this.loading = true;
     let lat = 48.2629984;
     let lon = 11.4339022;
 
@@ -83,6 +91,7 @@ export default {
   },
   methods: {
     getWeatherData(lat, lon) {
+      this.loading = true;
       const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
       const lang = "de";
 
@@ -98,6 +107,7 @@ export default {
           console.log(this.hourly);
           this.daily = data.daily;
           this.current = data.current;
+          this.loading = false;
         });
     },
 
@@ -120,6 +130,8 @@ export default {
           } else {
             this.city = locationComponents.village;
           }
+
+          
         });
     },
 
@@ -138,7 +150,7 @@ export default {
           const lon = data.results[0].geometry.lng;
 
           this.getWeatherData(lat, lon);
-          
+
           const locationComponents = data.results[0].components;
           if (locationComponents.city) {
             this.city = locationComponents.city;
@@ -147,8 +159,7 @@ export default {
           } else {
             this.city = locationComponents.village;
           }
-          });
-
+        });
     },
   },
 };
@@ -170,6 +181,8 @@ export default {
   width: 100%;
   overflow: scroll;
   overflow-y: hidden;
+  box-sizing: border-box;
+  border-radius: 6px;
 }
 
 .card-container {
@@ -225,4 +238,83 @@ export default {
 .hourly {
   padding: 3rem;
 }
+
+/* Loader */
+
+.loader-container, 
+  :root {
+        --scale: 3;
+      }
+
+      .lds-ripple {
+        display: inline-block;
+        position: relative;
+        width: calc(80px * var(--scale));
+        height: calc(80px * var(--scale));
+      }
+      .lds-ripple div {
+        position: absolute;
+        border: 4px solid #fff;
+        opacity: 1;
+        border-radius: 50%;
+        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      }
+      .lds-ripple div:nth-child(2) {
+        animation-delay: -0.5s;
+      }
+      @keyframes lds-ripple {
+        0% {
+          top: calc(36px * var(--scale));
+          left: calc(36px * var(--scale));
+          width: 0;
+          height: 0;
+          opacity: 1;
+        }
+        100% {
+          top: 0px;
+          left: 0px;
+          width: calc(72px * var(--scale));
+          height: calc(72px * var(--scale));
+          opacity: 0;
+        }
+      }
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 72px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+} */
+
 </style>
