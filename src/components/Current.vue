@@ -1,43 +1,83 @@
 <template>
-   <div class="current">
-     
+  <div class="current">
+  <div class="card-current">
+    <h3> {{ getTime(current.dt) }}</h3>
     <img
       :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"
-      :alt="current.weather[0].description"/>
-      <h2>Aktuelles Wetter in {{ city }}</h2>
-      <p>{{ getDate(current.dt) }}</p>
-      <p>{{ current.weather[0].description }}</p>
-      <p>{{ formatCurrentTermperature(current.temp) }}</p>
-      <p>{{ current.weather.wind_speed }}</p>
-      
-    </div>
+      :alt="current.weather[0].description"
+    />
+    <h3>Aktuelles Wetter in {{ city }}</h3>
+    <!-- <p>{{ getDate(current.dt) }} </p> -->
+    <p>{{ current.weather[0].description }}</p>
+    <p>{{ formatCurrentTermperature(current.temp) }}</p>
+    <p><i class="fas fa-wind"></i>{{ formatWindspeed(current.wind_speed) }}</p>
+    <p>
+        <i class="fas fa-humidity"></i> {{ formatHumidity(current.humidity) }} %
+      </p>
+
+  </div>
+  </div>
 </template>
 
 <script>
 export default {
-  props:["quote", "current", "city"],
-   methods:{
+  props: ["quote", "current", "city",],
+  methods: {
     getDate(dt) {
-            const date = new Date(dt * 1000);
-            
-            const month = "0" + (date.getMonth() + 1);
-            const day = "0" + date.getDate();
-            const year = date.getFullYear();
+      const date = new Date(dt * 1000);
 
-            const formattedDate = day.substr(-2) + '.' + month.substr(-2) + '.' + year;
+      const month = "0" + (date.getMonth() + 1);
+      const day = "0" + date.getDate();
+      const year = date.getFullYear();
 
-            return formattedDate;
-        },
-        formatCurrentTermperature(temp) {
-          const roundedTemp = Math.round(temp)
-          return`${roundedTemp} °C`
-        },
-   }
-}
+      const formattedDate =
+        day.substr(-2) + "." + month.substr(-2) + "." + year;
+
+      return formattedDate;
+    },
+    getTime(dt) {
+      const date = new Date(dt * 1000);
+      const hours = date.getHours();
+      const minutes = "0" + date.getMinutes();
+
+      const formattedTime = hours + ":" + minutes.substr(-2);
+
+      return formattedTime;
+    },
+    formatCurrentTermperature(temp) {
+      const roundedTemp = Math.round(temp);
+      return `${roundedTemp} °C`;
+    },
+    formatWindspeed(wind_speed) {
+      const windSpeed = Math.round(wind_speed * 3.6 * 10) / 10;
+      return `${windSpeed} km/h`;
+    },
+    formatHumidity(humidity) {
+      const humidityLevel = humidity;
+      return ` ${humidityLevel}`;
+    },
+  },
+};
 </script>
 
 <style>
- .current {
-   padding: 3rem;
- }
+.current {
+  padding: 3rem;
+  padding-top: 6rem;
+  font-size: 25px;
+  
+  
+  
+}
+.card-current {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 95%;
+  border-radius: 5px;
+  margin: 0 auto;
+  
+}
+.card-current:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
 </style>
