@@ -44,7 +44,7 @@
         :key="day.dt"
         :day="day"
       />
-      
+
     </div>
   </div>
 </template>
