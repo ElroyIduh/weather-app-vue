@@ -1,23 +1,25 @@
 <template>
-  <h1>Elroy's Wetter-App</h1>
-  <h2>Die beste Wetter App Deutschlands</h2>
+  <!-- Loader -->
+  <div v-if="loading" class="loader-container">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 
-  
-<!-- Search teil -->
-  <div class="search-box">
+  <h1 v-if="!loading">Elroy's Wetter-App</h1>
+  <h2 v-if="!loading">Die beste Wetter App Deutschlands</h2>
+
+  <!-- Search teil -->
+  <div v-if="!loading" class="search-box">
     <input
       class="search-text"
       type="text"
-      placeholder="Stadt oder Postleitzahl eingeben :)"
+      :placeholder="city"
       v-model="cityInput"
       @keyup.enter="searchCity"
     />
     <button class="search-button" @click="searchCity">Search</button>
-  </div>
-
-<!-- Loader -->
-  <div class="loader-container">
-  <div v-if="loading" class="lds-ripple"><div></div><div></div></div>
   </div>
 
   <div v-if="weatherData">
@@ -28,12 +30,13 @@
       <Hour v-for="hour in hourly" :key="hour.dt" :hour="hour" />
     </div>
     <div class="card-container" v-if="daily">
+      
       <Day v-for="day in daily.slice(0, 4)" :key="day.dt" :day="day" />
 
-      <DailyQuote
+      <!-- <DailyQuote
         text="  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. "
         author="Bruce Lee"
-      />
+      /> -->
 
       <Day
         class="day"
@@ -41,6 +44,7 @@
         :key="day.dt"
         :day="day"
       />
+      
     </div>
   </div>
 </template>
@@ -130,8 +134,6 @@ export default {
           } else {
             this.city = locationComponents.village;
           }
-
-          
         });
     },
 
@@ -159,6 +161,8 @@ export default {
           } else {
             this.city = locationComponents.village;
           }
+
+          this.cityInput = "";
         });
     },
   },
@@ -166,13 +170,17 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 .hourly {
@@ -185,6 +193,7 @@ export default {
   border-radius: 6px;
 }
 
+/*
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -192,12 +201,21 @@ export default {
   margin: 4rem;
   padding: 3rem;
 }
+*/
 
+.card-container {
+  margin: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/*
 .card {
   flex: 0 32%;
   margin-bottom: 2%;
-  
 }
+*/
 
 .currentIcon {
   width: 12%;
@@ -212,7 +230,9 @@ export default {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   background: none;
+  /*
   min-width: 16.25rem;
+  */
 }
 
 .search-text:focus-visible {
@@ -241,45 +261,53 @@ export default {
 
 /* Loader */
 
-.loader-container, 
-  :root {
-        --scale: 3;
-      }
+.loader-container,
+:root {
+  --scale: 3;
+}
 
-      .lds-ripple {
-        display: inline-block;
-        position: relative;
-        width: calc(80px * var(--scale));
-        height: calc(80px * var(--scale));
-      }
-      .lds-ripple div {
-        position: absolute;
-        border: 4px solid #fff;
-        opacity: 1;
-        border-radius: 50%;
-        animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-      }
-      .lds-ripple div:nth-child(2) {
-        animation-delay: -0.5s;
-      }
-      @keyframes lds-ripple {
-        0% {
-          top: calc(36px * var(--scale));
-          left: calc(36px * var(--scale));
-          width: 0;
-          height: 0;
-          opacity: 1;
-        }
-        100% {
-          top: 0px;
-          left: 0px;
-          width: calc(72px * var(--scale));
-          height: calc(72px * var(--scale));
-          opacity: 0;
-        }
-      }
+.loader-container {
+  height: 100vh;
 
-  /* display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: calc(80px * var(--scale));
+  height: calc(80px * var(--scale));
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: calc(36px * var(--scale));
+    left: calc(36px * var(--scale));
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: calc(72px * var(--scale));
+    height: calc(72px * var(--scale));
+    opacity: 0;
+  }
+}
+
+/* display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -316,5 +344,4 @@ export default {
     opacity: 0;
   }
 } */
-
 </style>

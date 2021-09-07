@@ -8,11 +8,11 @@
     <div>
       <p>{{ getDay(day.dt) }} - {{ getDate(day.dt) }}</p>
       <p>
-        <i class="fas fa-temperature-low"></i>
+        <i class="fas fa-thermometer-quarter"></i>
         {{ formatTermperature(day.temp.min) }}
       </p>
       <p>
-        <i class="fas fa-temperature-high"></i>
+        <i class="fas fa-thermometer-half"></i>
         {{ formatTermperature(day.temp.max) }}
       </p>
       <p><i class="fas fa-wind"></i> {{ formatWindspeed(day.wind_speed) }}</p>
@@ -75,7 +75,6 @@ export default {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 40%;
   border-radius: 5px;
 }
 .card:hover {

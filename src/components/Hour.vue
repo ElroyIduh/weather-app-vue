@@ -6,10 +6,17 @@
       :alt="hour.weather[0].description"
     />
     <p>{{ getTime(hour.dt) }}</p>
-    <p>
+    <p class="description">
       {{ hour.weather[0].description }}
     </p>
-    <p>{{ formatTermperature(hour.temp) }}</p>
+    <p> <i v-if="hour.temp < 5" class="fas fa-snowflake"></i>
+        <i v-if="hour.temp >=5 && hour.temp <=11" class="fas fa-thermometer-quarter"></i>
+        <i v-if="hour.temp >11 && hour.temp < 23" class="fas fa-thermometer-half"></i>
+        <i v-if="hour.temp >= 23" class="fas fa-thermometer-full"></i>{{ formatTermperature(hour.temp) }}</p>
+
+    <p v-if="hour.rain">
+        <i class="fas fa-cloud-rain"></i> {{ formatRain(hour.rain) }}
+      </p>
 
    
   </div>
@@ -47,14 +54,17 @@ export default {
   outline-style: inherit;
   outline-color: ivory;
   align-items: center;
-  
+  justify-content: space-between;
+  height: 100%;
 }
 
+.hour .description {
+  flex-grow: 1;
+}
 
 .card-hour {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 40%;
   border-radius: 5px;
   margin-right: 2rem;
   
