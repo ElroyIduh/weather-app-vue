@@ -228,10 +228,10 @@ body {
   margin-left: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  background: black; /*#2c3e50;*/
+  background:  #2c3e50;
   color: white;
   border: none;
-  border-bottom: 2px solid black; /*#2c3e50;*/
+  border-bottom: 2px solid #2c3e50;
   border-radius: 4px;
   cursor: pointer;
 }
