@@ -33,10 +33,7 @@
       
       <Day v-for="day in daily.slice(0, 4)" :key="day.dt" :day="day" />
 
-      <!-- <DailyQuote
-        text="  Empty your mind, be formless, shapeless — like water. Now you put water in a cup, it becomes the cup; You put water into a bottle it becomes the bottle; You put it in a teapot it becomes the teapot. Now water can flow or it can crash. Be water, my friend. "
-        author="Bruce Lee"
-      /> -->
+     
 
       <Day
         class="day"
@@ -193,15 +190,6 @@ body {
   border-radius: 6px;
 }
 
-/*
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 4rem;
-  padding: 3rem;
-}
-*/
 
 .card-container {
   margin: 1rem;
@@ -210,12 +198,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-/*
-.card {
-  flex: 0 32%;
-  margin-bottom: 2%;
-}
-*/
+
 
 .currentIcon {
   width: 12%;
@@ -230,9 +213,7 @@ body {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   background: none;
-  /*
-  min-width: 16.25rem;
-  */
+
 }
 
 .search-text:focus-visible {
@@ -247,10 +228,10 @@ body {
   margin-left: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  background: #2c3e50;
+  background: black; /*#2c3e50;*/
   color: white;
   border: none;
-  border-bottom: 2px solid #2c3e50;
+  border-bottom: 2px solid black; /*#2c3e50;*/
   border-radius: 4px;
   cursor: pointer;
 }
@@ -306,42 +287,4 @@ body {
     opacity: 0;
   }
 }
-
-/* display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.lds-ripple {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-ripple div {
-  position: absolute;
-  border: 4px solid #fff;
-  opacity: 1;
-  border-radius: 50%;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-.lds-ripple div:nth-child(2) {
-  animation-delay: -0.5s;
-}
-@keyframes lds-ripple {
-  0% {
-    top: 72px;
-    left: 36px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: 0px;
-    left: 0px;
-    width: 72px;
-    height: 72px;
-    opacity: 0;
-  }
-} */
 </style>

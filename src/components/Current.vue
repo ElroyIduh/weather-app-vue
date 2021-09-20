@@ -7,18 +7,14 @@
         :alt="current.weather[0].description"
       />
       <h3>Aktuelles Wetter in {{ city }}</h3>
-      <!-- <p>{{ getDate(current.dt) }} </p> -->
+  
       <p>{{ current.weather[0].description }}</p>
 
-      <!-- 4° Schnee Icon (<i class="fas fa-snowflake"></i>)
-    5-11° Tiefe Temperatur (<i class="fas fa-thermometer-quarter"></i>)
-    12-22° Normale Temperatur (<i class="fas fa-thermometer-half"></i>)
-    23- open end° hohe Temperatur (<i class="fas fa-thermometer-full"></i>) 
-    -->
+   
       <p>
         <i v-if="current.temp <= 5" class="fas fa-snowflake"></i>
-        <i v-if="current.temp >=5 && current.temp <=11" class="fas fa-thermometer-quarter"></i>
-        <i v-if="current.temp >=12 && current.temp <=22" class="fas fa-thermometer-half"></i>
+        <i v-if="current.temp >=5 && current.temp <=12" class="fas fa-thermometer-quarter"></i>
+        <i v-if="current.temp >12 && current.temp <=23" class="fas fa-thermometer-half"></i>
         <i v-if="current.temp >= 23" class="fas fa-thermometer-full"></i>
         {{ formatCurrentTermperature(current.temp) }}
       </p>
@@ -26,7 +22,7 @@
         <i class="fas fa-wind"></i> {{ formatWindspeed(current.wind_speed) }}
       </p>
       <p>
-        <i class="fas fa-humidity"></i> {{ formatHumidity(current.humidity) }} %
+        <img class="Icon-Humidity" src="@/assets/img/humidity.svg" alt="">&nbsp; {{ formatHumidity(current.humidity) }} %
       </p>
     </div>
   </div>

@@ -17,7 +17,7 @@
       </p>
       <p><i class="fas fa-wind"></i> {{ formatWindspeed(day.wind_speed) }}</p>
       <p>
-        <i class="fas fa-humidity"></i> {{ formatHumidity(day.humidity) }} %
+        <img class="Icon-Humidity" src="@/assets/img/humidity.svg" alt="">&nbsp; {{ formatHumidity(day.humidity) }} %
       </p>
 
       <p v-if="day.rain">
@@ -80,8 +80,11 @@ export default {
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-/* .container {
-  padding: 2px 16px;
+
+.Icon-Humidity {
+  height: 1em;
+  fill: #2c3e50;
   
-} */
+}
+
 </style>

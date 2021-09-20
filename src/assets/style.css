@@ -13,6 +13,7 @@ body {
 /* width */
 ::-webkit-scrollbar {
     width: 20px;
+    border-color: white;
   }
   
   /* Track */
@@ -42,7 +43,7 @@ body {
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #2c3e50; 
+    background: #2c3e50;
   }
 
     

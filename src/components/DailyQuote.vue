@@ -38,12 +38,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
-/*
-  element
-  .class
-  #id
-  ::pseudo-class
-*/
+
 
 .quote div {
   padding: 2rem;
