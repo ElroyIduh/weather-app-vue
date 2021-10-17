@@ -51,6 +51,7 @@ import Day from "./components/Day";
 import Hour from "./components/Hour";
 import Current from "./components/Current";
 import DailyQuote from "./components/DailyQuote";
+import VUE_APP_WEATHER_API_KEY from ".weather"
 
 export default {
   data() {
@@ -74,6 +75,7 @@ export default {
     this.loading = true;
     let lat = 48.2629984;
     let lon = 11.4339022;
+    
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -92,7 +94,7 @@ export default {
   methods: {
     getWeatherData(lat, lon) {
       this.loading = true;
-      const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
+      const apiKey = VUE_APP_WEATHER_API_KEY=a037050f6259759e10e06b4c880a0b1b;
       const lang = "de";
 
       let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?appid=${apiKey}&lat=${lat}&lon=${lon}&lang=${lang}&units=metric`;
@@ -110,7 +112,7 @@ export default {
     },
 
     getCurrentCity(lat, lon) {
-      const apiKey = process.env.local.VUE_APP_GEO_API_KEY;
+      const apiKey = process.env.VUE_APP_GEO_API_KEY;
 
       let apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
 
@@ -132,7 +134,7 @@ export default {
     },
 
     searchCity() {
-      const apiKey = process.env.local.VUE_APP_GEO_API_KEY;
+      const apiKey = process.env.VUE_APP_GEO_API_KEY;
 
       let apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${this.cityInput}&key=${apiKey}`;
 
