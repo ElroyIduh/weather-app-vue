@@ -51,7 +51,7 @@ import Day from "./components/Day";
 import Hour from "./components/Hour";
 import Current from "./components/Current";
 import DailyQuote from "./components/DailyQuote";
-import VUE_APP_WEATHER_API_KEY from ".weather"
+
 
 export default {
   data() {
@@ -94,7 +94,7 @@ export default {
   methods: {
     getWeatherData(lat, lon) {
       this.loading = true;
-      const apiKey = VUE_APP_WEATHER_API_KEY=a037050f6259759e10e06b4c880a0b1b;
+      const apiKey = process.env.VUE_APP_WEATHER_API_KEY;
       const lang = "de";
 
       let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?appid=${apiKey}&lat=${lat}&lon=${lon}&lang=${lang}&units=metric`;
