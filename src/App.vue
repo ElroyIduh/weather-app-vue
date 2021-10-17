@@ -110,7 +110,7 @@ export default {
     },
 
     getCurrentCity(lat, lon) {
-      const apiKey = process.env.VUE_APP_GEO_API_KEY;
+      const apiKey = process.env.local.VUE_APP_GEO_API_KEY;
 
       let apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
 
@@ -132,7 +132,7 @@ export default {
     },
 
     searchCity() {
-      const apiKey = process.env.VUE_APP_GEO_API_KEY;
+      const apiKey = process.env.local.VUE_APP_GEO_API_KEY;
 
       let apiUrl = `https://api.opencagedata.com/geocode/v1/json?q=${this.cityInput}&key=${apiKey}`;
 
