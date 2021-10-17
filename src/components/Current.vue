@@ -12,8 +12,8 @@
 
    
       <p>
-        <i v-if="current.temp <= 5" class="fas fa-snowflake"></i>
-        <i v-if="current.temp >=5 && current.temp <=12" class="fas fa-thermometer-quarter"></i>
+        <i v-if="current.temp <= 1" class="fas fa-snowflake"></i>
+        <i v-if="current.temp >=1 && current.temp <=12" class="fas fa-thermometer-quarter"></i>
         <i v-if="current.temp >12 && current.temp <=23" class="fas fa-thermometer-half"></i>
         <i v-if="current.temp >= 23" class="fas fa-thermometer-full"></i>
         {{ formatCurrentTermperature(current.temp) }}

@@ -9,8 +9,8 @@
     <p class="description">
       {{ hour.weather[0].description }}
     </p>
-    <p> <i v-if="hour.temp < 5" class="fas fa-snowflake"></i>
-        <i v-if="hour.temp >=5 && hour.temp <=12" class="fas fa-thermometer-quarter"></i>
+    <p> <i v-if="hour.temp < 1" class="fas fa-snowflake"></i>
+        <i v-if="hour.temp >=1 && hour.temp <=12" class="fas fa-thermometer-quarter"></i>
         <i v-if="hour.temp >12 && hour.temp < 23" class="fas fa-thermometer-half"></i>
         <i v-if="hour.temp >= 23" class="fas fa-thermometer-full"></i> {{ formatTermperature(hour.temp) }}</p>
 

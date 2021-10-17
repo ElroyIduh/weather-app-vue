@@ -23,7 +23,7 @@ export default {
       const url = "https://quotes.rest/qod";
 
       fetch(url).then((response) => {
-        console.log(response);
+        
       });
     },
   },

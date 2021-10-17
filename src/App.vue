@@ -84,7 +84,6 @@ export default {
         this.getCurrentCity(lat, lon);
       },
       (error) => {
-        console.error(error);
         this.getWeatherData(lat, lon);
         this.getCurrentCity(lat, lon);
       }
@@ -101,11 +100,9 @@ export default {
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-          console.log("weatherData:", data);
           this.weatherData = data;
           this.hourly = data.hourly;
           this.hourly.splice(24, this.hourly.length - 1);
-          console.log(this.hourly);
           this.daily = data.daily;
           this.current = data.current;
           this.loading = false;
@@ -120,7 +117,7 @@ export default {
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-          console.log("OpenCageData", data);
+          
 
           const locationComponents = data.results[0].components;
 
@@ -144,7 +141,6 @@ export default {
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           const lat = data.results[0].geometry.lat;
           const lon = data.results[0].geometry.lng;
 
