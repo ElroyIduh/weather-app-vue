@@ -6,6 +6,14 @@
         :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"
         :alt="current.weather[0].description"
       />
+
+      <!-- <img
+        :src="`http://openweathermap.org/img/wn/${current.weather[0].icon}.png`"
+        :srcset="`http://openweathermap.org/img/wn/${current.weather[0].icon}.png` 
+                  `http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`"       
+                  :alt="current.weather[0].description"
+      /> -->
+
       <h3>Aktuelles Wetter in {{ city }}</h3>
   
       <p>{{ current.weather[0].description }}</p>

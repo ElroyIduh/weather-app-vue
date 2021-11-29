@@ -6,6 +6,7 @@ body {
     -moz-animation: AnimationName 15s ease infinite;
     animation: AnimationName 15s ease infinite;
     font-size: 20px;
+    color:#2c3e50;
 }
 
 

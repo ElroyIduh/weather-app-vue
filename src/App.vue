@@ -8,7 +8,7 @@
   </div>
 
   <h1 v-if="!loading">Elroy's Wetter-App</h1>
-  <h2 v-if="!loading">Die beste Wetter App Deutschlands</h2>
+  <h2 v-if="!loading">Die beste Wetter App Dachaus</h2>
 
   <!-- Search teil -->
   <div v-if="!loading" class="search-box">
